@@ -99,11 +99,9 @@ def draw_img(img, binary_img, p):
 
 def main():
         capture_start = time.perf_counter()
-        hello_start = time.perf_counter()
 
         while True:
                 capture_time = time.perf_counter() - capture_start
-                hello_time = time.perf_counter() - hello_start
 
                 if capture_time > 1:
                         img = camera_capture()
