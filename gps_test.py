@@ -1,23 +1,28 @@
 import time
 import serial
 from pynmea import nmea
-from gps3 import *
+from gps import *
 
 ser = serial.Serial('/../dev/ttyS0', 9600)
 gpgga = nmea.GPGGA()
 
 def test():
+        print "start"
         session = gps()
         session.stream(WATCH_ENABLE|WATCH_NEWSTYLE)
 
         while True:
-                report = session.next()
-                if report.keys()[0] == 'exp' :
-                        lat = float(report['lat'])
-                        lon = float(report['lon'])
-                        print("Latitude: " + str(lat))
-                        print("Longitude: " + str(lon))
-                        time.sleep(0.5)
+                try:
+                        report = session.next()
+                        if report.keys()[0] == 'epx' :
+                                lat = float(report['lat'])
+                                lon = float(report['lon'])
+                                print "Latitude: " + str(lat)
+                                print "Longitude: " + str(lon)
+                                time.sleep(0.5)
+                except KeyboardInterrupt:
+                        ser.close()
+                        break;
 
 
 def get_gps():
@@ -47,8 +52,9 @@ def get_gps():
         return gpsLat, gpsLong
 
 
-#test()
+test()
 
+'''
 x = -1
 y = -1
 
@@ -66,4 +72,4 @@ while True:
         print("Latitude: " + str(x))
         print("Longitude: " + str(y))
 
-
+'''
