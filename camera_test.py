@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+
 import time
 import picamera
 import cv2
@@ -20,12 +22,13 @@ def camera_capture():
             
         return frame
 
-# color_extract(): カラー画像から赤色を白，その他の色を黒とした２値画像を生成する      
+# color_extract(): カラー画像から赤色を白，その他の色を黒とした２値画像を生成する
 # src     :  元画像
 # h_th_low: Hのしきい値の最小値
 # h_th_up : Hのしきい値の最大値
 # s_th    : Sのしきい値の最小値(最大値は255)
 # v_th    : Vのしきい値の最小値(最大値は255)
+
 def extract_redColor(src, h_th_low, h_th_up, s_th, v_th):
         # BGR➜HSV
         hsv = cv2.cvtColor(src, cv2.COLOR_BGR2HSV)
@@ -76,7 +79,7 @@ def find_centerPoint(src):
                         max_area = area
 
         red_rate = max_area / (row * column) * 100
-        print(red_rate)
+        print red_rate
 
         
         if max_id != -1:
@@ -93,8 +96,11 @@ def find_centerPoint(src):
 
         return red_rate, c
 
-def draw_img(img, binary_img, p):
+def draw_img(img, binary_img, p, red_rate):
+
+        #s = "RED： " + red_rate + "[%]"
         cv2.circle(img, (p[0], p[1]), 10, (0, 255, 255), -1)
+        #cv2.putText(img, "RED： " + str(red_rate) + "[%]", (300, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255))
         cv2.imshow('test', img)
         cv2.imshow('binary image', binary_img)
 
@@ -112,7 +118,7 @@ def main():
                     
                         src = binary_img.copy()
                         red_rate, p = find_centerPoint(src)
-                        draw_img(img, binary_img, p)
+                        draw_img(img, binary_img, p, red_rate)
                 
                         capture_start = time.perf_counter()
 
