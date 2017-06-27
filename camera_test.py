@@ -6,12 +6,17 @@ import numpy as np
 cv2.namedWindow('test')
 cv2.namedWindow('binary image')
 
+fourcc = cv2.VideoWriter_fourcc(* 'XVID')
+out_movie = cv2.VideoWriter('color_movie.avi', fourcc, 20.0, (512, 384))
+
 def camera_capture():
         with picamera.PiCamera() as camera:    
             camera.resolution = (512, 384)
             time.sleep(2)
             camera.capture('test.jpg')
             frame = cv2.imread('./test.jpg', 1)
+
+            out_movie.write(frame)
             
         return frame
 
@@ -63,7 +68,6 @@ def find_centerPoint(src):
         row, column = src.shape
 
         img, contours, hierarchy = cv2.findContours(src, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-        #cv2.drawContours(img, contours, -1, (255, 255, 255), 3)
 
         for i in range(0, len(contours)):
                 area = cv2.contourArea(contours[i])
@@ -86,8 +90,6 @@ def find_centerPoint(src):
                 else:
                         c[1] = int(m['m01'] / m['m00'])
 
-        #cv2.circle(src, (c[0], c[1]), 1000, (0, 0, 255), -1)
-        #print(c)
 
         return red_rate, c
 
@@ -118,6 +120,7 @@ def main():
                 if key == ord('q'):
                         break
 
+        out_movie.release()
         cv2.destroyAllWindows()
 
 
