@@ -6,19 +6,16 @@ import cv2
 import numpy as np
 
 cv2.namedWindow('test')
-cv2.namedWindow('binary image')
+#cv2.namedWindow('binary image')
 
-fourcc = cv2.VideoWriter_fourcc(* 'XVID')
-out_movie = cv2.VideoWriter('color_movie.avi', fourcc, 20.0, (512, 384))
+#fourcc = cv2.VideoWriter_fourcc(* 'XVID')
+#out_movie = cv2.VideoWriter('color_movie.avi', fourcc, 20.0, (512, 384))
 
-def camera_capture():
-        with picamera.PiCamera() as camera:    
-            camera.resolution = (512, 384)
-            time.sleep(2)
-            camera.capture('test.jpg')
-            frame = cv2.imread('./test.jpg', 1)
+def camera_capture(camera):
+        camera.capture('test.jpg')
+        frame = cv2.imread('./test.jpg', 1)
 
-            out_movie.write(frame)
+        #out_movie.write(frame)
             
         return frame
 
@@ -32,6 +29,8 @@ def camera_capture():
 def extract_redColor(src, h_th_low, h_th_up, s_th, v_th):
         # BGR➜HSV
         hsv = cv2.cvtColor(src, cv2.COLOR_BGR2HSV)
+
+
         # HSVの各チャンネルを別々の画像に分ける
         h, s, v = cv2.split(hsv)
 
@@ -79,7 +78,6 @@ def find_centerPoint(src):
                         max_area = area
 
         red_rate = max_area / (row * column) * 100
-        print red_rate
 
         
         if max_id != -1:
@@ -98,38 +96,48 @@ def find_centerPoint(src):
 
 def draw_img(img, binary_img, p, red_rate):
 
-        #s = "RED： " + red_rate + "[%]"
         cv2.circle(img, (p[0], p[1]), 10, (0, 255, 255), -1)
-        #cv2.putText(img, "RED： " + str(red_rate) + "[%]", (300, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255))
+        cv2.putText(img, "RED: " + str('%3.2f' % red_rate) + "[%]", (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 127))
         cv2.imshow('test', img)
         cv2.imshow('binary image', binary_img)
 
 
 def main():
-        capture_start = time.perf_counter()
 
-        while True:
-                capture_time = time.perf_counter() - capture_start
+        with picamera.PiCamera() as camera:
+                camera.resolution = (320, 240)
+                time.sleep(2)
 
-                if capture_time > 1:
-                        img = camera_capture()
-                        
-                        binary_img = extract_redColor(img, 160, 10, 70, 70)
+                capture_start = time.clock()
+
+
+                while True:
+                        try:
+                                capture_time = time.clock() - capture_start
+
+
+                                if capture_time > 1:
+                                        capture_start = time.clock()
+                                        print capture_start
+
+                                        img = camera_capture(camera)
+                                        cv2.imshow('test', img)
+
+                                        binary_img = extract_redColor(img, 160, 10, 70, 70)
                     
-                        src = binary_img.copy()
-                        red_rate, p = find_centerPoint(src)
-                        draw_img(img, binary_img, p, red_rate)
-                
-                        capture_start = time.perf_counter()
+                                        src = binary_img.copy()
+                                        red_rate, p = find_centerPoint(src)
+                                        draw_img(img, binary_img, p, red_rate)
 
-                key = cv2.waitKey(1)
-                if key == ord('q'):
-                        break
-
-        out_movie.release()
-        cv2.destroyAllWindows()
+                                        cv2.waitKey(1)
+                                
+                                 
+                        except KeyboardInterrupt:
+                                break
 
 
-
+        #out_movie.release()
+        #cv2.destroyAllWindows()
+        
 if __name__ == '__main__':
         main()

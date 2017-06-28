@@ -22,7 +22,7 @@ def test():
                                 time.sleep(0.5)
                 except KeyboardInterrupt:
                         ser.close()
-                        break;
+                        break
 
 
 def get_gps():
