@@ -10,9 +10,9 @@ def analog_read(channel):
 
 while True:
     reading = analog_read(0)
-    volts = reading * 5.0 / 1024
+    volts = reading * 5.0 /1024
     inches = volts / 0.0098
-    centis = inches * 2.54
+    centis = inches * 2.54 - 10.0
 
     print(centis)
 
