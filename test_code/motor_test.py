@@ -44,6 +44,14 @@ while True:
         GPIO.output(24, 1)
         time.sleep(1)
 
+    if key == ord('b'):
+        print "forward"
+        GPIO.output(16, 0)
+        GPIO.output(20, 1)
+        GPIO.output(23, 1)
+        GPIO.output(24, 0)
+        time.sleep(1)
+        
     if key == ord('s'):
         print "stop"
         GPIO.output(16, 0)

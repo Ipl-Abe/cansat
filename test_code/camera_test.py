@@ -109,13 +109,15 @@ def main():
                 time.sleep(2)
 
                 capture_start = time.clock()
+                stanby_start = time.clock()
 
 
                 while True:
                         try:
                                 capture_time = time.clock() - capture_start
+                                stanby_time = time.clock() - stanby_start
 
-
+                                '''
                                 if capture_time > 1:
                                         capture_start = time.clock()
                                         print capture_start
@@ -130,8 +132,18 @@ def main():
                                         draw_img(img, binary_img, p, red_rate)
 
                                         cv2.waitKey(1)
-                                
-                                 
+                                '''
+
+                                if stanby_time > 1:
+                                        img = camera_capture(camera)
+                                        binary_img = extract_redColor(img, 0, 255, 30, 0)
+                                        src = binary_img.copy()
+                                        red_rate, p = find_centerPoint(src)
+                                        draw_img(img, binary_img, p, red_rate)
+                                        cv2.waitKey(1)
+                                        
+                                        stanby_start = time.clock()
+                                         
                         except KeyboardInterrupt:
                                 break
 
