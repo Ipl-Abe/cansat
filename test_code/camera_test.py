@@ -133,7 +133,7 @@ def main():
 
                                         cv2.waitKey(1)
                                 '''
-
+                                
                                 if stanby_time > 1:
                                         img = camera_capture(camera)
                                         binary_img = extract_redColor(img, 0, 255, 30, 0)
@@ -143,7 +143,7 @@ def main():
                                         cv2.waitKey(1)
                                         
                                         stanby_start = time.clock()
-                                         
+                                
                         except KeyboardInterrupt:
                                 break
 
