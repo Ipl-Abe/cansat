@@ -5,8 +5,8 @@ import time
 cv2.namedWindow('test')
 
 
-motor = Motor.Motor(26, 13, 19, 18, 23, 24)
-speed = 20
+motor = Motor.Motor(12, 7, 25, 18, 23, 24)
+speed = 40
 flag = 0
 motor.set_speed(speed)
 
@@ -40,21 +40,26 @@ while True:
 
     if key == ord('f'):
         print "forward"
-        motor.forward_move()
+        motor.move_forward()
 
     if key == ord("b"):
         print "backward"
-        motor.backward_move()
+        motor.move_backward()
 
     if key == ord("r"):
         print "right"
-        motor.right_turn()
+        motor.turn_right()
 
     if key == ord("l"):
         print "left"
-        motor.left_turn()
+        motor.turn_left()
 
     if key == ord("s"):
-        print("stop")
+        print "stop"
         motor.stop()
+
+    if key == ord("e"):
+        print "end"
+        motor.finish()
+        break
 
