@@ -1,9 +1,19 @@
 import RPi.GPIO as GPIO
+import time
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(2, GPIO.OUT)
 
-while True:
-    GPIO.output(2, GPIO.HIGH)
+nic = GPIO.PWM(2, 100)
+nic.start(0)
+
+print "start"
+
+print "cut"
+nic.ChangeDutyCycle(100)
+time.sleep(10)
+
+print "finish"
+nic.ChangeDutyCycle(0)
 
 GPIO.cleanup()
