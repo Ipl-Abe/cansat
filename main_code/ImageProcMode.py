@@ -2,7 +2,6 @@
 
 import cv2
 import picamera
-import spidev
 import numpy as np
 import math
 from collections import namedtuple
@@ -17,8 +16,6 @@ class ImageProcMode:
         # 画像中のゴールの中心座標
         Point2d = namedtuple('Point2d', 'x y')
         self.target = Point2d(0, 0)
-        # 距離センサによるゴールとの距離
-        self.distance = 0
         # 画像中の赤色の割合
         self.red_rate = 0
          # ロボットの動作
@@ -27,11 +24,6 @@ class ImageProcMode:
         cv2.namedWindow('original image')
         cv2.namedWindow('binary image')
 
-    def capture_image(self, camera):
-        camera.capture('original_image.jpg')
-        img = cv2.imread('./original_image.jpg', 1)
-
-        return img
     
     # color_extract(): カラー画像から赤色を白，その他の色を黒とした２値画像を生成する
     # src     :  元画像
@@ -104,16 +96,7 @@ class ImageProcMode:
             else:
                 self.target = self.target._replace(y = int(m['m01'] / m['m00']))
 
-    def read_analogData(self, channel):
-        r = spi.xfer2([1, (8 + channel) << 4, 0])
-        adc_out = ((r[1]&3) << 8) + r[2]
-        return adc_out
-
-    def read_ultrasonic(self):
-        analog = read_analogData(0)
-        volts = analog * 5.0 / 1024
-        inches = volts / 0.0098
-        self.distance = inches * 2.54      
+     
 
     def robot_action(self):
         if 0 <= self.target.x and self.target.x < self.row/2:
@@ -123,9 +106,11 @@ class ImageProcMode:
         elif self.row/2 < self.target.x and self.target.x <= self.row:
             self.action = 'r'
 
+
     '''
     Set function
     '''
+
 
     '''
     Get function

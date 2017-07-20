@@ -2,7 +2,6 @@
 
 import math
 from collections import namedtuple
-from gps import *
 
 class GPSMode:
 
@@ -19,17 +18,7 @@ class GPSMode:
         self.distance = 0
         # ロボットの動作
         self.action = 's'
-
-        # GPS setting
-        self.session = gps()
-        self.session.stream(WATCH_ENABLE|WATCH_NEWSTYLE)
-
-
-    def read_robotGPS(self):
-        report = self.session.next()
-        if report.keys()[0] == 'epx':
-            self.robot = self.robot._replace(x = float(report['lon']))
-            self.robot = self.robot._replace(y = float(report['lat']))
+            
 
     def calc_distanceGPS(self):
         # ロボット位置とゴール位置のそれぞの成分の差分
@@ -52,26 +41,26 @@ class GPSMode:
             if self.sub_x > 0.0:
                d = math.atan2(self.sub_x, self.sub_y)
             else:
-                d = atan2(self.sub_x, self.sub_y) + 2.0 * math.pi
+                d = math.atan2(self.sub_x, self.sub_y) + 2.0 * math.pi
 
         d = d / math.pi * 180.0
 
-        if (348.75 <= d and d < 360.0) or (0.0 <= d and d < 11.25): self.target._replace(direction = 0)
-        elif 11.25 <= d and d < 33.75: self.target._replace(direction = 1)
-        elif 33.75 <= d and d < 56.25: self.target._replace(direction = 2)
-        elif 56.25 <= d and d < 78.75: self.target._replace(direction = 3)
-        elif 78.75 <= d and d < 101.25: self.target._replace(direction = 4)
-        elif 101.25 <= d and d < 123.75: self.target._replace(direction = 5)
-        elif 123.75 <= d and d < 146.25: self.target._replace(direction = 6)
-        elif 146.25 <= d and d < 168.75: self.target._replace(direction = 7)
-        elif 168.75 <= d and d < 191.25: self.target._replace(direction = 8)
-        elif 191.25 <= d and d < 213.75: self.target._replace(direction = 9)
-        elif 213.75 <= d and d < 236.25: self.target._replace(direction = 10)
-        elif 236.25 <= d and d < 258.75: self.target._replace(direction = 11)
-        elif 258.75 <= d and d < 281.25: self.target._replace(direction = 12)
-        elif 281.25 <= d and d < 303.75: self.target._replace(direction = 13)
-        elif 303.75 <= d and d < 326.25: self.target._replace(direction = 14)
-        elif 326.25 <= d and d < 348.75: self.target._replace(direction = 15)
+        if (348.75 <= d and d < 360.0) or (0.0 <= d and d < 11.25): self.target = self.target._replace(direction = 0)
+        elif 11.25 <= d and d < 33.75: self.target = self.target._replace(direction = 1)
+        elif 33.75 <= d and d < 56.25: self.target = self.target._replace(direction = 2)
+        elif 56.25 <= d and d < 78.75: self.target = self.target._replace(direction = 3)
+        elif 78.75 <= d and d < 101.25: self.target = self.target._replace(direction = 4)
+        elif 101.25 <= d and d < 123.75: self.target = self.target._replace(direction = 5)
+        elif 123.75 <= d and d < 146.25: self.target = self.target._replace(direction = 6)
+        elif 146.25 <= d and d < 168.75: self.target = self.target._replace(direction = 7)
+        elif 168.75 <= d and d < 191.25: self.target = self.target._replace(direction = 8)
+        elif 191.25 <= d and d < 213.75: self.target = self.target._replace(direction = 9)
+        elif 213.75 <= d and d < 236.25: self.target = self.target._replace(direction = 10)
+        elif 236.25 <= d and d < 258.75: self.target = self.target._replace(direction = 11)
+        elif 258.75 <= d and d < 281.25: self.target = self.target._replace(direction = 12)
+        elif 281.25 <= d and d < 303.75: self.target = self.target._replace(direction = 13)
+        elif 303.75 <= d and d < 326.25: self.target = self.target._replace(direction = 14)
+        elif 326.25 <= d and d < 348.75: self.target = self.target._replace(direction = 15)
 
     def  robot_action(self):
         if self.robot.direction <= self.target.direction:
@@ -98,6 +87,13 @@ class GPSMode:
     def set_targetGPS(self, x, y):
         self.target = self.target._replace(x = x)
         self.target = self.target._replace(y = y)
+
+    def set_robotGPS(self, x, y):
+        self.robot = self.robot._replace(x = x)
+        self.robot = self.robot._replace(y = y)
+
+    def set_robotDirection(self, value):
+        self.robot = self.robot._replace(direction = value)
 
 
     '''

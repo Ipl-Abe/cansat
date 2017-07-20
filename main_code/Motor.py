@@ -4,70 +4,61 @@ import RPi.GPIO as GPIO
 
 class Motor:
 
-    def __init__(self, pwmR, r1, r2, pwmL, l1, l2):
+    def __init__(self, r1, r2, l1, l2):
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(pwmR, GPIO.OUT)
         GPIO.setup(r1, GPIO.OUT)
         GPIO.setup(r2, GPIO.OUT)
-        GPIO.setup(pwmL, GPIO.OUT)
         GPIO.setup(l1, GPIO.OUT)
         GPIO.setup(l2, GPIO.OUT)
 
-        self.r1 = r1
-        self.r2 = r2
-        self.l1 = l1
-        self.l2 = l2
-        self.pwmR = GPIO.PWM(pwmR, 50)
-        self.pwmR.start(0)
-        self.pwmL = GPIO.PWM(pwmL, 50)
-        self.pwmL.start(0)
+        self.r1 = GPIO.PWM(r1, 100)
+        self.r2 = GPIO.PWM(r2, 100)
+        self.l1 = GPIO.PWM(l1, 100)
+        self.l2 = GPIO.PWM(l2, 100)
+        self.r1.start(0)
+        self.r2.start(0)
+        self.l1.start(0)
+        self.l2.start(0)
         self.speed = 0
 
     def move_forward(self):
-        self.pwmR.ChangeDutyCycle(self.speed)
-        self.pwmL.ChangeDutyCycle(self.speed)
-        GPIO.output(self.r1, 1)
-        GPIO.output(self.r2, 0)
-        GPIO.output(self.l1, 1)
-        GPIO.output(self.l2, 0)
+        print self.speed
+        self.r1.ChangeDutyCycle(0)
+        self.r2.ChangeDutyCycle(self.speed)
+        self.l1.ChangeDutyCycle(0)
+        self.l2.ChangeDutyCycle(self.speed)
 
     def move_backward(self):
-        self.pwmR.ChangeDutyCycle(self.speed)
-        self.pwmL.ChangeDutyCycle(self.speed)
-        GPIO.output(self.r1, 0)
-        GPIO.output(self.r2, 1)
-        GPIO.output(self.l1, 0)
-        GPIO.output(self.l2, 1)
+        self.r1.ChangeDutyCycle(self.speed)
+        self.r2.ChangeDutyCycle(0)
+        self.l1.ChangeDutyCycle(self.speed)
+        self.l2.ChangeDutyCycle(0)
 
     def turn_right(self):
-        self.pwmR.ChangeDutyCycle(self.speed-10)
-        self.pwmL.ChangeDutyCycle(self.speed)
-        GPIO.output(self.r1, 1)
-        GPIO.output(self.r2, 0)
-        GPIO.output(self.l1, 1)
-        GPIO.output(self.l2, 0)
+        self.r1.ChangeDutyCycle(0)
+        self.r2.ChangeDutyCycle(self.speed - 30)
+        self.l1.ChangeDutyCycle(0)
+        self.l2.ChangeDutyCycle(self.speed)
 
     def turn_left(self):
-        self.pwmR.ChangeDutyCycle(self.speed)
-        self.pwmL.ChangeDutyCycle(self.speed-10)
-        GPIO.output(self.r1, 1)
-        GPIO.output(self.r2, 0)
-        GPIO.output(self.l1, 1)
-        GPIO.output(self.l2, 0)
+        self.r1.ChangeDutyCycle(0)
+        self.r2.ChangeDutyCycle(self.speed)
+        self.l1.ChangeDutyCycle(0)
+        self.l2.ChangeDutyCycle(self.speed - 30)
 
     def stop(self):
-        GPIO.output(self.r1, 0)
-        GPIO.output(self.r2, 0)
-        GPIO.output(self.l1, 0)
-        GPIO.output(self.l2, 0)
+        self.r1.ChangeDutyCycle(0)
+        self.r2.ChangeDutyCycle(0)
+        self.l1.ChangeDutyCycle(0)
+        self.l2.ChangeDutyCycle(0)
 
     def finish(self):
-        self.pwmR.stop()
-        self.pwmL.stop()
+        self.r1.stop()
+        self.r2.stop()
+        self.l1.stop()
+        self.l2.stop()
 
     def set_speed(self, speed):
         if 0 <= speed and speed <= 100:
             self.speed = speed
-            self.pwmR.ChangeDutyCycle(self.speed)
-            self.pwmL.ChangeDutyCycle(self.speed)
