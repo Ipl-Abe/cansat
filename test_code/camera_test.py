@@ -133,13 +133,23 @@ def main():
 
                                         cv2.waitKey(1)
                                 '''
+
                                 
                                 if stanby_time > 1:
+                                        '''
                                         img = camera_capture(camera)
                                         binary_img = extract_redColor(img, 0, 255, 30, 0)
                                         src = binary_img.copy()
                                         red_rate, p = find_centerPoint(src)
                                         draw_img(img, binary_img, p, red_rate)
+                                        '''
+
+                                        camera_capture(camera)
+                                        img = cv2.imread('test.jpg', 0)
+                                        cv2.imshow('test', img)
+                                        print np.average(img)
+
+                                        
                                         cv2.waitKey(1)
                                         
                                         stanby_start = time.clock()
