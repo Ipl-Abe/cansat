@@ -5,11 +5,10 @@ import time
 cv2.namedWindow('test')
 
 
-motor = Motor.Motor(12, 7, 25, 18, 23, 24)
-speed = 40
+motor = Motor.Motor(23, 24, 7, 25)
+speed = 30
 flag = 0
 motor.set_speed(speed)
-
 start = time.clock()
 
 while True:

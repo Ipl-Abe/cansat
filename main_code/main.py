@@ -3,20 +3,22 @@
 import time
 import picamera
 import RPi.GPIO as GPIO
+import spidev
 import cv2
+import numpy as np
 import Motor
 import GPSMode
 import ImageProcMode
 from gps import *
 
 # target GPS data
-target_x = 139.939200
-target_y = 37.522630
+target_x = 139.939475
+target_y = 37.522963333
 
 '''
 Pin Setting
 '''
-motor = Motor.Motor(26, 13, 19, 18, 23, 24)
+motor = Motor.Motor(23, 24, 7, 25)
 gps_mode = GPSMode.GPSMode()
 img_mode = ImageProcMode.ImageProcMode()
 
@@ -24,7 +26,7 @@ img_mode = ImageProcMode.ImageProcMode()
 Compass sensor Setting
 '''
 GPIO.setmode(GPIO.BCM)
-channels = [6, 13, 19, 26]
+channels = [22, 27, 17, 4]
 GPIO.setup(channels, GPIO.IN)
 compass = [0, 0, 0, 0]
 
@@ -33,6 +35,12 @@ GPS Setting
 '''
 session = gps()
 session.stream(WATCH_ENABLE|WATCH_NEWSTYLE)
+
+'''
+Ultrasonic sensor Setting
+'''
+spi = spidev.SpiDev()
+spi.open(0, 0)
 
 
 cv2.namedWindow('original image')
@@ -47,7 +55,7 @@ def read_compass():
     if compass[1] == 1: c = c + 2
     if compass[2] == 1: c = c + 4
     if compass[3] == 1: c = c + 8
-
+    
     if c == 0: return 8
     elif c == 1: return 11
     elif c == 2: return 3
@@ -74,23 +82,58 @@ def read_gps():
             y = float(report['lat'])
     return x, y
 
+def read_analogData(channel):
+        r = spi.xfer2([1, (8 + channel) << 4, 0])
+        adc_out = ((r[1]&3) << 8) + r[2]
+        return adc_out
+
+def read_ultrasonic():
+        analog = read_analogData(0)
+        volts = analog * 5.0 / 1024
+        inches = volts / 0.0098
+        return inches * 2.54     
+
+def capture_image(camera, flag):
+    camera.capture('original_image.jpg')
+    return cv2.imread('original_image.jpg', flag)
+
+def standby(camera):
+    img = capture_image(camera, 0)
+    cv2.imshow('original image', img)
+    print np.average(img)
+    if np.average(img) > 30:
+        return False
+    else:
+        return True
     
 def running(camera):
     key = cv2.waitKey(1)
     if key == ord('s'):
         action = 's'
+
+    distance = 10000
         
-    #control_byImg(camera)
-    #print img_mode.get_targetX()
+    control_byImg(camera)
+    # Image Processing Mode
+    if img_mode.get_redRate() > 5:
+        distance = read_ultrasonic()
+        img_mode.robot_action()
+        action = img_mode.get_action()
+        control_motor(action)
+        print "Point: (" + str(img_mode.get_targetX()) + ", " + str(img_mode.get_targetY()) + ") Distance: " + str(distance) + " Action: " + action
+        if distance < 50:
+            return False
 
-    control_byGPS()
-    action = gps_mode.get_action()
-    print "GPS: (" + str(gps_mode.get_robotX()) + ", " + str(gps_mode.get_robotY()) + ") Direction: (" + str(gps_mode.get_robotDirection()) + ", " + str(gps_mode.get_targetDirection()) + ") Distance: " + str(gps_mode.get_distance()) + "Action: " + action
-
-    if gps_mode.get_distance() < 5:
-        return False
+    # GPS Mode
     else:
-        return True
+        control_byGPS()
+        action = gps_mode.get_action()
+        control_motor(action)
+        print "GPS: (" + str(gps_mode.get_robotX()) + ", " + str(gps_mode.get_robotY()) + ") Direction: (" + str(gps_mode.get_robotDirection()) + ", " + str(gps_mode.get_targetDirection()) + ") Distance: " + str(gps_mode.get_distance()) + "Action: " + action
+        if gps_mode.get_distance() < 5:
+            return False
+
+    return True
 
 def control_byGPS():
     lon, lat = read_gps()
@@ -102,8 +145,7 @@ def control_byGPS():
     gps_mode.robot_action()
 
 def control_byImg(camera):
-    
-    color_img = img_mode.capture_image(camera)
+    color_img = capture_image(camera, 1)
     binary_img = img_mode.extract_redColor(color_img, 160, 10, 70, 70)
     src = binary_img.copy()
     img_mode.find_centerPoint(src)
@@ -115,23 +157,24 @@ def draw_img(original_img, binary_img):
     cv2.imshow('original image', original_img)
     cv2.imshow('binary image', binary_img)
 
-def control_motor():
-    if self.action == 'f':
-        self.motor.move_forward()
-    elif self.action == 'b':
-        self.motor.move_backward()
-    elif self.action == 'r':
-        self.motor.turn_right()
-    elif self.action == 'l':
-        self.motor.turn_left()
-    elif self.action == 's':
-        self.motor.stop()
-    elif self.action == 'f':
-        self.motion.finish()
+def control_motor(action):
+    if action == 'f':
+        motor.move_forward()
+    elif action == 'b':
+        motor.move_backward()
+    elif action == 'r':
+        motor.turn_right()
+    elif action == 'l':
+        motor.turn_left()
+    elif action == 's':
+        motor.stop()
+    elif action == 'f':
+        motion.finish()
 
 def main():
 
     action = 's'
+    mode = 0
     gps_mode.set_targetGPS(target_x, target_y)
 
     time.sleep(1)
@@ -144,11 +187,24 @@ def main():
         camera.resolution = (320, 240)
         time.sleep(2)
         while True:
-            running_time = time.clock() - running_start
-            if running_time > 1:
-                if running(camera) == False:
-                    break
-                running_start = time.clock()
+            # standby mode
+            if mode == 0:
+                if standby(camera) == False:
+                    mode = 1
+                    print "----------------------------------FALLING MODE----------------------------------"
+            # falling mode
+            if mode == 1:
+                mode = 2
+                print "----------------------------------RUNNING MODE----------------------------------"
+            # running mode
+            if mode == 2:
+                motor.set_speed(100)
+                running_time = time.clock() - running_start
+                if running_time > 1:
+                    if running(camera) == False:
+                        print "----------------------------------!!! GOAL !!!----------------------------------"
+                        break
+                    running_start = time.clock()
 
 if __name__ == '__main__':
     main()
