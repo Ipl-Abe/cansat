@@ -15,7 +15,7 @@ class GPSMode:
         self.sub_x = 0
         self.sub_y = 0
         # GPSによるゴールとの距離
-        self.distance = 0
+        self.distance = 100
         # ロボットの動作
         self.action = 's'
             
@@ -24,7 +24,7 @@ class GPSMode:
         # ロボット位置とゴール位置のそれぞの成分の差分
         self.sub_x = (self.target.x * 10000.0 - self.robot.x * 10000.0) * 11.11350
         self.sub_y = (self.target.y * 10000.0 - self.robot.y * 10000.0) * 9.11910
-        self.distance = math.sqrt(self.sub_x * self.sub_x + self.sub_y * self.sub_y)
+        self.distance = math.sqrt(abs(self.sub_x * self.sub_x - self.sub_y * self.sub_y))
 
     def target_direction(self):
         if self.sub_x == 0.0:
@@ -37,10 +37,9 @@ class GPSMode:
                 d = math.pi / 2.0
             else:
                 d = 3.0 * math.pi / 2.0
-        else:
-            if self.sub_x > 0.0:
+        if self.sub_x > 0.0:
                d = math.atan2(self.sub_x, self.sub_y)
-            else:
+        else:
                 d = math.atan2(self.sub_x, self.sub_y) + 2.0 * math.pi
 
         d = d / math.pi * 180.0

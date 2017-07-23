@@ -4,12 +4,16 @@ from gps import *
 
 
 f = open('gps_test.csv', 'w')
-writer = csv.writer(f, lineterminator='\n')
+#writer = csv.writer(f, lineterminator='\n')
+
 
 print "start"
 session = gps()
 
 session.stream(WATCH_ENABLE|WATCH_NEWSTYLE)
+
+target_x = 139.9386666
+target_y = 37.523505
 
 while True:
 
@@ -24,9 +28,10 @@ while True:
                         gpsdata = []
                         gpsdata.append(lat)
                         gpsdata.append(lon)
-                        writer.writerow(gpsdata)
-                        print "Latitude: " + str(lat)
-                        print "Longitude: " + str(lon)
+                        #writer.writerow(gpsdata)
+                        print "Latitude: " + str(lat) + ", Longitude: " + str(lon)
+                        f.write(str(lat) + ", " + str(lon) + "\n")
+        
                         time.sleep(0.5)
         except KeyboardInterrupt:
                 f.close()

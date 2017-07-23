@@ -11,9 +11,11 @@ import GPSMode
 import ImageProcMode
 from gps import *
 
+f = open('record.txt', 'w')
+
 # target GPS data
-target_x = 139.939475
-target_y = 37.522963333
+target_x = 139.939085
+target_y = 37.522693333
 
 '''
 Initialize
@@ -95,7 +97,9 @@ def capture_image(camera, flag):
 def standby(camera):
     img = capture_image(camera, 0)
     cv2.imshow('original image', img)
-    print np.average(img)
+    record = str(np.average(img))
+    print record
+    f.write(record)
     if np.average(img) > 30:
         return False
     else:
@@ -115,7 +119,9 @@ def running(camera):
         img_mode.robot_action()
         action = img_mode.get_action()
         control_motor(action)
-        print "Point: (" + str(img_mode.get_targetX()) + ", " + str(img_mode.get_targetY()) + ") Distance: " + str(distance) + " Action: " + action
+        record = "Point: (" + str(img_mode.get_targetX()) + ", " + str(img_mode.get_targetY()) + ") Distance: " + str(distance) + " Action: " + action
+        print record
+        f.write(record)
         if distance < 50:
             return False
 
@@ -124,8 +130,10 @@ def running(camera):
         control_byGPS()
         action = gps_mode.get_action()
         control_motor(action)
-        print "GPS: (" + str(gps_mode.get_robotX()) + ", " + str(gps_mode.get_robotY()) + ") Direction: (" + str(gps_mode.get_robotDirection()) + ", " + str(gps_mode.get_targetDirection()) + ") Distance: " + str(gps_mode.get_distance()) + "Action: " + action
-        if gps_mode.get_distance() < 5:
+        record =  "GPS: (" + str(gps_mode.get_robotX()) + ", " + str(gps_mode.get_robotY()) + ") Direction: (" + str(gps_mode.get_robotDirection()) + ", " + str(gps_mode.get_targetDirection()) + ") Distance: " + str(gps_mode.get_distance()) + "Action: " + action
+        print record
+        f.write(record)
+        if gps_mode.get_distance() < 2:
             return False
 
     return True
@@ -168,43 +176,55 @@ def control_motor(action):
 
 def main():
 
-    action = 's'
-    mode = 0
-    gps_mode.set_targetGPS(target_x, target_y)
+    try:
+        action = 's'
+        mode = 0
+        gps_mode.set_targetGPS(target_x, target_y)
 
-    time.sleep(1)
+        time.sleep(1)
 
-    print "----------------------------------STANBY MODE----------------------------------"
+        record =  "----------------------------------STANBY MODE----------------------------------"
+        print record
+        f.write(record)
+        
+        running_start = time.clock()
 
-    running_start = time.clock()
+        with picamera.PiCamera() as camera:
+            camera.resolution = (320, 240)
+            time.sleep(2)
+            while True:
+                # standby mode
+                if mode == 0:
+                    if standby(camera) == False:
+                        mode = 1
+                        record = "----------------------------------FALLING MODE----------------------------------"
+                        print record
+                        f.write(record)
+                # falling mode
+                if mode == 1:
+                    time.sleep(1)
+                    nic.ChangeDutyCycle(100)
+                    time.sleep(3)
+                    nic.ChangeDutyCycle(0)
+                    nic.stop()
+                    mode = 2
+                    record = "----------------------------------RUNNING MODE----------------------------------"
+                    f.write(record)
+                # running mode
+                if mode == 2:
+                    motor.set_speed(80)
+                    running_time = time.clock() - running_start
+                    if running_time > 2:
+                        if running(camera) == False:
+                            record = "----------------------------------!!! GOAL !!!----------------------------------"
+                            print record
+                            f.write(record)
+                            break
+                        running_start = time.clock()
 
-    with picamera.PiCamera() as camera:
-        camera.resolution = (320, 240)
-        time.sleep(2)
-        while True:
-            # standby mode
-            if mode == 0:
-                if standby(camera) == False:
-                    mode = 1
-                    print "----------------------------------FALLING MODE----------------------------------"
-            # falling mode
-            if mode == 1:
-                time.sleep(6)
-                nic.ChangeDutyCycle(100)
-                time.sleep(3)
-                nic.ChanfeDutyCycle(0)
-                nic.stop()
-                mode = 2
-                print "----------------------------------RUNNING MODE----------------------------------"
-            # running mode
-            if mode == 2:
-                motor.set_speed(100)
-                running_time = time.clock() - running_start
-                if running_time > 1:
-                    if running(camera) == False:
-                        print "----------------------------------!!! GOAL !!!----------------------------------"
-                        break
-                    running_start = time.clock()
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+        f.close()
 
 if __name__ == '__main__':
     main()
