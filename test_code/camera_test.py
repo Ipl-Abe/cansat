@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 
 cv2.namedWindow('test')
-#cv2.namedWindow('binary image')
+cv2.namedWindow('binary image')
 
 #fourcc = cv2.VideoWriter_fourcc(* 'XVID')
 #out_movie = cv2.VideoWriter('color_movie.avi', fourcc, 20.0, (512, 384))
@@ -103,8 +103,10 @@ def draw_img(img, binary_img, p, red_rate):
 
 
 def main():
+        print "start"
 
         with picamera.PiCamera() as camera:
+                print "test1"
                 camera.resolution = (320, 240)
                 time.sleep(2)
 
@@ -113,11 +115,12 @@ def main():
 
 
                 while True:
+                        print "test"
                         try:
                                 capture_time = time.clock() - capture_start
                                 stanby_time = time.clock() - stanby_start
 
-                                '''
+                                
                                 if capture_time > 1:
                                         capture_start = time.clock()
                                         print capture_start
@@ -132,7 +135,7 @@ def main():
                                         draw_img(img, binary_img, p, red_rate)
 
                                         cv2.waitKey(1)
-                                '''
+                                
 
                                 
                                 if stanby_time > 1:
@@ -142,18 +145,17 @@ def main():
                                         src = binary_img.copy()
                                         red_rate, p = find_centerPoint(src)
                                         draw_img(img, binary_img, p, red_rate)
-                                        '''
+                                        
 
                                         camera_capture(camera)
                                         img = cv2.imread('test.jpg', 0)
                                         cv2.imshow('test', img)
                                         print np.average(img)
-
                                         
                                         cv2.waitKey(1)
                                         
                                         stanby_start = time.clock()
-                                
+                                        '''
                         except KeyboardInterrupt:
                                 break
 

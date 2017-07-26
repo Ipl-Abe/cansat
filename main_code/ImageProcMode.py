@@ -99,11 +99,11 @@ class ImageProcMode:
      
 
     def robot_action(self):
-        if 0 <= self.target.x and self.target.x < self.row/2:
+        if 0 <= self.target.x and self.target.x < self.row/3:
             self.action = 'l'
-        elif self.target.x == self.row/2:
+        elif self.row/3 <= self.target.x and self.target.x < 2*self.row/3:
             self.action = 'f'
-        elif self.row/2 < self.target.x and self.target.x <= self.row:
+        elif 2*self.row/3 <= self.target.x and self.target.x <= self.row:
             self.action = 'r'
 
 
@@ -120,9 +120,6 @@ class ImageProcMode:
 
     def get_targetY(self):
         return self.target.y
-    
-    def get_distance(self):
-        return self.distance
 
     def get_redRate(self):
         return self.red_rate

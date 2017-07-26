@@ -14,12 +14,14 @@ from gps import *
 f = open('record.txt', 'w')
 
 # target GPS data
-target_x = 139.939085
-target_y = 37.522693333
+target_x = 139.93901
+target_y = 37.522583333
 
 '''
 Initialize
 '''
+stuck_start = time.clock()
+    
 motor = Motor.Motor(23, 24, 7, 25)
 gps_mode = GPSMode.GPSMode()
 img_mode = ImageProcMode.ImageProcMode()
@@ -39,6 +41,13 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(2, GPIO.OUT)
 nic = GPIO.PWM(2, 100)
 nic.start(0)
+
+# 巻き取り
+GPIO.setup(16, GPIO.OUT)
+GPIO.setup(20, GPIO.OUT)
+GPIO.setup(21, GPIO.OUT)
+pwm = GPIO.PWM(16, 100)
+pwm.start(0)
 
 cv2.namedWindow('original image')
 cv2.namedWindow('binary image')
@@ -80,8 +89,8 @@ def read_gps():
     return x, y
 
 def read_analogData(channel):
-        r = spi.xfer2([1, (8 + channel) << 4, 0])
-        adc_out = ((r[1]&3) << 8) + r[2]
+        r = spi.xfer2([1, (2 + channel) << 6, 0])
+        adc_out = ((r[1]&31) << 6) + (r[2] >> 2)
         return adc_out
 
 def read_ultrasonic():
@@ -99,66 +108,135 @@ def standby(camera):
     cv2.imshow('original image', img)
     record = str(np.average(img))
     print record
-    f.write(record)
+    f.write(record + "\n")
     if np.average(img) > 30:
         return False
     else:
         return True
+
+def falling():
+    # 焼き切り
+    time.sleep(1)
+    record = "cutting now"
+    print record
+    f.write(record + "\n")
+    #nic.ChangeDutyCycle(100)
+    #time.sleep(5)
+    #nic.ChangeDutyCycle(0)
+    #nic.stop()
+
+    # 巻き取り
+    record = "wind wire now"
+    print record
+    f.write(record + "\n")
+    pwm.ChangeDutyCycle(100)
+    GPIO.output(20, 0)
+    GPIO.output(21, 1)
+    for i in range(1):
+        time.sleep(1)
+        print (i+1)
+
+        if 2 < i and i <= 7:
+            pwm.ChangeDutyCycle(0)
+            nic.ChangeDutyCycle(100)
+        else:
+            pwm.ChangeDutyCycle(100)
+            nic.ChangeDutyCycle(0)
+    pwm.ChangeDutyCycle(0)
+    pwm.stop()
+    nic.stop()
     
 def running(camera):
+    global stuck_start
+    
+    # 停止
     key = cv2.waitKey(1)
     if key == ord('s'):
         action = 's'
 
-    distance = 10000
-        
-    control_byImg(camera)
+    # 1ステップ前の距離
+    d = gps_mode.get_distance()
+    regular_proc(camera)
+    
+    # スタック判定
+    stuck_time = time.clock() - stuck_start
+    if not(d-0.15 <= gps_mode.get_distance() and gps_mode.get_distance() <= d+0.15):
+        stuck_start = time.clock()
+        # スタック
+    if stuck_time >= 5:
+        print "stuck now"
+        stuck_start = time.clock()
+        # スタック回避動作
+        avoid_stuck()
+            
     # Image Processing Mode
-    if img_mode.get_redRate() > 5:
-        distance = read_ultrasonic()
-        img_mode.robot_action()
-        action = img_mode.get_action()
-        control_motor(action)
-        record = "Point: (" + str(img_mode.get_targetX()) + ", " + str(img_mode.get_targetY()) + ") Distance: " + str(distance) + " Action: " + action
-        print record
-        f.write(record)
-        if distance < 50:
+    if img_mode.get_redRate() > 1:
+        control_byImg()
+        if img_mode.get_redRate() > 50 and read_ultrasonic() < 50:
             return False
 
     # GPS Mode
     else:
         control_byGPS()
-        action = gps_mode.get_action()
-        control_motor(action)
-        record =  "GPS: (" + str(gps_mode.get_robotX()) + ", " + str(gps_mode.get_robotY()) + ") Direction: (" + str(gps_mode.get_robotDirection()) + ", " + str(gps_mode.get_targetDirection()) + ") Distance: " + str(gps_mode.get_distance()) + "Action: " + action
-        print record
-        f.write(record)
+	'''
         if gps_mode.get_distance() < 2:
             return False
+	'''
 
     return True
 
-def control_byGPS():
+def regular_proc(camera):
     lon, lat = read_gps()
+    #lon = 0
+    #lat = 0
     if lon != 0 and lat != 0:
         gps_mode.set_robotGPS(lon, lat)
-    gps_mode.set_robotDirection(read_compass())
-    gps_mode.target_direction()
-    gps_mode.calc_distanceGPS()
-    gps_mode.robot_action()
+        gps_mode.set_robotDirection(read_compass())
+        gps_mode.calc_distanceGPS()
 
-def control_byImg(camera):
     color_img = capture_image(camera, 1)
     binary_img = img_mode.extract_redColor(color_img, 160, 10, 70, 70)
     src = binary_img.copy()
     img_mode.find_centerPoint(src)
     draw_img(color_img, binary_img)
 
+def control_byGPS():
+    gps_mode.target_direction()
+    action = gps_mode.get_action()
+    gps_mode.robot_action()
+    control_motor(action)
+    record =  "GPS: (" + str(gps_mode.get_robotX()) + ", " + str(gps_mode.get_robotY()) + ") Direction: (" + str(gps_mode.get_robotDirection()) + ", " + str(gps_mode.get_targetDirection()) + ") Distance: " + str(gps_mode.get_distance()) + ", Action: " + action
+    print record
+    f.write(record + "\n")
+
+def control_byImg():
+    
+    img_mode.robot_action()
+    action = img_mode.get_action()
+    control_motor(action)
+    record = "Point: (" + str(img_mode.get_targetX()) + ", " + str(img_mode.get_targetY()) + ") Distance: " + str(read_ultrasonic()) + " Action: " + action
+    print record
+    f.write(record + "\n")
+
+    '''
+    if action == 'r' or action == 'l':
+        time.sleep(0.5)
+        motor.stop()
+    '''
+    #time.sleep(0.5)
+    #motor.stop()
+
 def draw_img(original_img, binary_img):
     cv2.circle(original_img, (img_mode.get_targetX(), img_mode.get_targetY()), 10, (0, 255, 255), -1)
     cv2.putText(original_img, "RED: " + str('%3.2f' % img_mode.get_redRate()) + "[%]", (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 127))
     cv2.imshow('original image', original_img)
     cv2.imshow('binary image', binary_img)
+
+def avoid_stuck():
+    motor.move_backward()
+    time.sleep(5)
+    motor.turn_right()
+    time.sleep(5)
 
 def control_motor(action):
     if action == 'f':
@@ -175,17 +253,18 @@ def control_motor(action):
         motion.finish()
 
 def main():
+    global stuck_start
 
     try:
         action = 's'
         mode = 0
         gps_mode.set_targetGPS(target_x, target_y)
 
-        time.sleep(1)
+        time.sleep(2)
 
         record =  "----------------------------------STANBY MODE----------------------------------"
         print record
-        f.write(record)
+        f.write(record + "\n")
         
         running_start = time.clock()
 
@@ -199,30 +278,30 @@ def main():
                         mode = 1
                         record = "----------------------------------FALLING MODE----------------------------------"
                         print record
-                        f.write(record)
+                        f.write(record + "\n")
                 # falling mode
                 if mode == 1:
-                    time.sleep(1)
-                    nic.ChangeDutyCycle(100)
-                    time.sleep(3)
-                    nic.ChangeDutyCycle(0)
-                    nic.stop()
+                    falling()
                     mode = 2
                     record = "----------------------------------RUNNING MODE----------------------------------"
-                    f.write(record)
+                    print record
+                    f.write(record + "\n")
                 # running mode
                 if mode == 2:
-                    motor.set_speed(80)
+                    motor.set_speed(30)
+                    stuck_start = time.clock()
                     running_time = time.clock() - running_start
-                    if running_time > 2:
+                    if running_time > 1:
                         if running(camera) == False:
                             record = "----------------------------------!!! GOAL !!!----------------------------------"
                             print record
-                            f.write(record)
+                            f.write(record + "\n")
                             break
-                        running_start = time.clock()
+                        else:
+                            running_start = time.clock()
 
     except KeyboardInterrupt:
+        motor.finish()
         GPIO.cleanup()
         f.close()
 

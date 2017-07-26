@@ -11,7 +11,7 @@ print "start"
 
 print "cut"
 nic.ChangeDutyCycle(100)
-time.sleep(10)
+time.sleep(3)
 
 print "finish"
 nic.ChangeDutyCycle(0)

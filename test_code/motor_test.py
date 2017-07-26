@@ -14,7 +14,7 @@ GPIO.setup(21, GPIO.OUT)
 pwm = GPIO.PWM(16, 50)
 pwm.start(0)
 
-speed = 30
+speed = 100
 
 time.sleep(2)
 
