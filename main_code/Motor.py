@@ -23,7 +23,6 @@ class Motor:
         self.speed = 0
 
     def move_forward(self):
-        print self.speed
         self.r1.ChangeDutyCycle(0)
         self.r2.ChangeDutyCycle(self.speed)
         self.l1.ChangeDutyCycle(0)
@@ -37,7 +36,7 @@ class Motor:
 
     def turn_right(self):
         self.r1.ChangeDutyCycle(0)
-        self.r2.ChangeDutyCycle(self.speed/2)
+        self.r2.ChangeDutyCycle(self.speed / 2)
         self.l1.ChangeDutyCycle(0)
         self.l2.ChangeDutyCycle(self.speed)
 
@@ -45,7 +44,7 @@ class Motor:
         self.r1.ChangeDutyCycle(0)
         self.r2.ChangeDutyCycle(self.speed)
         self.l1.ChangeDutyCycle(0)
-        self.l2.ChangeDutyCycle(self.speed/2)
+        self.l2.ChangeDutyCycle(self.speed / 2)
 
     def stop(self):
         self.r1.ChangeDutyCycle(0)

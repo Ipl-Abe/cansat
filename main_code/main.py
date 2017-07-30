@@ -14,15 +14,15 @@ from gps import *
 f = open('record.txt', 'w')
 
 # target GPS data
-target_x = 139.93901
-target_y = 37.522583333
+target_x = 139.938981667
+target_y = 37.522533333
 
 '''
 Initialize
 '''
 stuck_start = time.clock()
     
-motor = Motor.Motor(23, 24, 7, 25)
+motor = Motor.Motor(7, 25, 23, 24)
 gps_mode = GPSMode.GPSMode()
 img_mode = ImageProcMode.ImageProcMode()
 
@@ -39,8 +39,6 @@ spi.open(0, 0)
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(2, GPIO.OUT)
-nic = GPIO.PWM(2, 100)
-nic.start(0)
 
 # 巻き取り
 GPIO.setup(16, GPIO.OUT)
@@ -115,38 +113,29 @@ def standby(camera):
         return True
 
 def falling():
-    # 焼き切り
-    time.sleep(1)
-    record = "cutting now"
-    print record
-    f.write(record + "\n")
-    #nic.ChangeDutyCycle(100)
-    #time.sleep(5)
-    #nic.ChangeDutyCycle(0)
-    #nic.stop()
 
-    # 巻き取り
-    record = "wind wire now"
-    print record
-    f.write(record + "\n")
-    pwm.ChangeDutyCycle(100)
-    GPIO.output(20, 0)
-    GPIO.output(21, 1)
-    for i in range(1):
+    for i in range(90):
         time.sleep(1)
-        print (i+1)
+        record = str(i+1)
 
-        if 2 < i and i <= 7:
-            pwm.ChangeDutyCycle(0)
-            nic.ChangeDutyCycle(100)
+        # 最初の30秒間は焼き切り、その後は10秒に1回は焼き切り
+        if i < 30 or i%10 == 0:
+            GPIO.output(2, GPIO.HIGH)
+            record = record + ": cutting"
         else:
+            GPIO.output(2, GPIO.LOW)
+
+        # 20秒間焼き切った後から巻き取り開始
+        if i > 20:
             pwm.ChangeDutyCycle(100)
-            nic.ChangeDutyCycle(0)
+            GPIO.output(20, 0)
+            GPIO.output(21, 1)
+            record = record + ": winding"
+
     pwm.ChangeDutyCycle(0)
     pwm.stop()
-    nic.stop()
     
-def running(camera):
+def running(camera, mode):
     global stuck_start
     
     # 停止
@@ -160,30 +149,29 @@ def running(camera):
     
     # スタック判定
     stuck_time = time.clock() - stuck_start
-    if not(d-0.15 <= gps_mode.get_distance() and gps_mode.get_distance() <= d+0.15):
+    print str(d-0.05) + " " + str(gps_mode.get_distance()) + " " + str(d+0.05) + " " + str(stuck_time)
+    if not(d-0.05 <= gps_mode.get_distance() and gps_mode.get_distance() <= d+0.05):
         stuck_start = time.clock()
-        # スタック
+    # スタック
     if stuck_time >= 5:
-        print "stuck now"
-        stuck_start = time.clock()
+        record = "stuck now"
+        print record
+        f.write(record + "\n")
         # スタック回避動作
         avoid_stuck()
-            
-    # Image Processing Mode
-    if img_mode.get_redRate() > 1:
-        control_byImg()
-        if img_mode.get_redRate() > 50 and read_ultrasonic() < 50:
-            return False
+        stuck_start = time.clock()
 
     # GPS Mode
-    else:
+    if mode == 0:
         control_byGPS()
-	'''
-        if gps_mode.get_distance() < 2:
-            return False
-	'''
+            
+    # Image Processing Mode
+    else:
+        control_byImg(prev_action)
+        if img_mode.get_redRate() > 50 and read_ultrasonic() < 50:
+            return img_mode.get_redRate() False
 
-    return True
+    return img_mode.get_redRate() True
 
 def regular_proc(camera):
     lon, lat = read_gps()
@@ -205,26 +193,23 @@ def control_byGPS():
     action = gps_mode.get_action()
     gps_mode.robot_action()
     control_motor(action)
-    record =  "GPS: (" + str(gps_mode.get_robotX()) + ", " + str(gps_mode.get_robotY()) + ") Direction: (" + str(gps_mode.get_robotDirection()) + ", " + str(gps_mode.get_targetDirection()) + ") Distance: " + str(gps_mode.get_distance()) + ", Action: " + action
+    record =  "[GPS mode] GPS: (" + str(gps_mode.get_robotX()) + ", " + str(gps_mode.get_robotY()) + ") Direction: (" + str(gps_mode.get_robotDirection()) + ", " + str(gps_mode.get_targetDirection()) + ") Distance: " + str(gps_mode.get_distance()*100) + "[cm] Action: " + action
     print record
     f.write(record + "\n")
 
-def control_byImg():
-    
-    img_mode.robot_action()
-    action = img_mode.get_action()
+def control_byImg(prev_action):
+    # 赤色を認識できないとき
+    if img_mode.get_redRate() < 1.0:
+        action = prev_action
+    else:
+        img_mode.robot_action()
+        action = img_mode.get_action()
     control_motor(action)
-    record = "Point: (" + str(img_mode.get_targetX()) + ", " + str(img_mode.get_targetY()) + ") Distance: " + str(read_ultrasonic()) + " Action: " + action
+    record = "[IMG mode] GPS: (" + str(gps_mode.get_robotX()) + ", " + str(gps_mode.get_robotY()) + ") Point: (" + str(img_mode.get_targetX()) + ", " + str(img_mode.get_targetY()) + ") Distance: " + str(read_ultrasonic()) + "[cm] Action: " + action
     print record
     f.write(record + "\n")
 
-    '''
-    if action == 'r' or action == 'l':
-        time.sleep(0.5)
-        motor.stop()
-    '''
-    #time.sleep(0.5)
-    #motor.stop()
+
 
 def draw_img(original_img, binary_img):
     cv2.circle(original_img, (img_mode.get_targetX(), img_mode.get_targetY()), 10, (0, 255, 255), -1)
@@ -254,6 +239,7 @@ def control_motor(action):
 
 def main():
     global stuck_start
+    running_mode = 0   # 0->GPS mode, 1->IMG mode
 
     try:
         action = 's'
@@ -286,13 +272,18 @@ def main():
                     record = "----------------------------------RUNNING MODE----------------------------------"
                     print record
                     f.write(record + "\n")
+                    motor.set_speed(30)
+                    motor.move_forward()
+                    time.sleep(10)
+                    stuck_start = time.clock()
                 # running mode
                 if mode == 2:
-                    motor.set_speed(30)
-                    stuck_start = time.clock()
                     running_time = time.clock() - running_start
                     if running_time > 1:
-                        if running(camera) == False:
+                        running_flag, red_rate = running(camera, running_mode)
+                        if red_rate > 3.0:
+                            running_mode = 1
+                        if running_flag == False:
                             record = "----------------------------------!!! GOAL !!!----------------------------------"
                             print record
                             f.write(record + "\n")
