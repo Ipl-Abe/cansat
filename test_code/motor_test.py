@@ -35,6 +35,13 @@ while True:
         GPIO.output(21, 1)
         time.sleep(1)
         
+    if key == ord('b'):
+	print "back"
+	pwm.ChangeDutyCycle(speed)
+	GPIO.output(20, 1)
+	GPIO.output(21, 0)
+	time.sleep(1)
+
     if key == ord('s'):
         print "stop"
         pwm.ChangeDutyCycle(0)

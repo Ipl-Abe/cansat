@@ -4,16 +4,13 @@ import time
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(2, GPIO.OUT)
 
-nic = GPIO.PWM(2, 100)
-nic.start(0)
-
 print "start"
 
 print "cut"
-nic.ChangeDutyCycle(100)
-time.sleep(3)
+GPIO.output(2, GPIO.HIGH)
+time.sleep(10)
 
 print "finish"
-nic.ChangeDutyCycle(0)
+GPIO.output(2, GPIO.LOW)
 
 GPIO.cleanup()
