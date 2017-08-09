@@ -14,8 +14,8 @@ from gps import *
 f = open('record.txt', 'w')
 
 # target GPS data
-target_x = 139.938965
-target_y = 37.52241
+target_x = 139.938906667
+target_y = 37.522546
 
 '''
 Initialize
@@ -150,7 +150,6 @@ def running(camera, mode):
     
     # スタック判定
     stuck_time = time.clock() - stuck_start
-    print str(d-0.05) + " " + str(gps_mode.get_distance()) + " " + str(d+0.05) + " " + str(stuck_time)
     if not(d-0.05 <= gps_mode.get_distance() and gps_mode.get_distance() <= d+0.05):
         stuck_start = time.clock()
     # スタック
@@ -169,18 +168,15 @@ def running(camera, mode):
     # Image Processing Mode
     else:
         control_byImg()
-        if img_mode.get_redRate() > 50 and read_ultrasonic() < 50:
+        if img_mode.get_redRate() > 50:
             return False
 
 
     return True
 
 def regular_proc(camera):
-    lon, lat = read_gps()
-    if lon != 0 and lat != 0:
-        gps_mode.set_robotGPS(lon, lat)
-        gps_mode.set_robotDirection(read_compass())
-        gps_mode.calc_distanceGPS()
+    gps_mode.set_robotDirection(read_compass())
+    gps_mode.calc_distanceGPS()
 
     color_img = capture_image(camera, 1)
     binary_img = img_mode.extract_redColor(color_img, 160, 10, 70, 70)
@@ -190,22 +186,24 @@ def regular_proc(camera):
 
 def control_byGPS():
     gps_mode.target_direction()
-    action = gps_mode.get_action()
     gps_mode.robot_action()
+    action = gps_mode.get_action()
     control_motor(action)
-    record =  "[GPS mode] GPS: (" + str(gps_mode.get_robotX()) + ", " + str(gps_mode.get_robotY()) + ") Direction: (" + str(gps_mode.get_robotDirection()) + ", " + str(gps_mode.get_targetDirection()) + ") Distance: " + str(gps_mode.get_distance()*100) + "[cm] Action: " + action
+    record =  "[GPS mode] GPS: " + str(gps_mode.get_robotX()) + ", " + str(gps_mode.get_robotY()) + " Direction: " + str(gps_mode.get_robotDirection()) + ", " + str(gps_mode.get_targetDirection()) + " Distance: " + str(gps_mode.get_distance()*100) + " [cm] Action: " + action + " Red: " + str(img_mode.get_redRate())
     print record
     f.write(record + "\n")
 
 def control_byImg():
     # 赤色を認識できないとき
-    if img_mode.get_redRate() < 1.0:
-        action = img_mode.get_action()
+    if img_mode.get_redRate() < 0.05:
+        action = 'r'
     else:
         img_mode.robot_action()
         action = img_mode.get_action()
+
+    print action
     control_motor(action)
-    record = "[IMG mode] GPS: (" + str(gps_mode.get_robotX()) + ", " + str(gps_mode.get_robotY()) + ") Point: (" + str(img_mode.get_targetX()) + ", " + str(img_mode.get_targetY()) + ") Distance: " + str(read_ultrasonic()) + "[cm] Action: " + action
+    record = "[IMG mode] GPS: " + str(gps_mode.get_robotX()) + ", " + str(gps_mode.get_robotY()) + " Point: " + str(img_mode.get_targetX()) + ", " + str(img_mode.get_targetY()) + " Distance: " + str(read_ultrasonic()) + " [cm] Action: " + action + " Red: " + str(img_mode.get_redRate())
     print record
     f.write(record + "\n")
 
@@ -253,13 +251,22 @@ def main():
         f.write(record + "\n")
         
         running_start = time.clock()
-        
+        gps_start = time.clock()
         
         with picamera.PiCamera() as camera:
         
             camera.resolution = (320, 240)
             time.sleep(2)
             while True:
+                gps_time = time.clock() - gps_start
+
+                if gps_time > 0.5:
+                    lon, lat = read_gps()
+                    if lon != 0 and lat != 0:
+                        print 'gps'
+                        gps_mode.set_robotGPS(lon, lat)
+                        gps_start = time.clock()
+                
                 # standby mode
                 if mode == 0:
                     if standby(camera) == False:
@@ -274,6 +281,7 @@ def main():
                     motor.move_forward()
                     time.sleep(10)
                     stuck_start = time.clock()
+                    turn_start = time.clock()
                     stop_start = time.clock()
 
                     mode = 2
@@ -284,9 +292,15 @@ def main():
                 # running mode
                 if mode == 2:
                     running_time = time.clock() - running_start
+                    turn_time = time.clock() - turn_start
                     stop_time = time.clock() - stop_start
                     if running_time > 1:
-                        if img_mode.get_redRate() > 3.0:
+                        if running_mode == 0 and gps_mode.get_distance() < 5 and turn_time > 15:
+                            print 'turn'
+                            control_motor('r')
+                            time.sleep(10)
+                            turn_start = time.clock()
+                        if img_mode.get_redRate() > 0.05:
                             running_mode = 1
                             motor.set_speed(50)
                         if running(camera, running_mode) == False:
@@ -296,10 +310,7 @@ def main():
                             break
                         else:
                             running_start = time.clock()
-                    if stop_time > 60:
-                        control_motor('s')
-                        time.sleep(15)
-                        stop_start = time.clock()
+                    
         
 
     except KeyboardInterrupt:

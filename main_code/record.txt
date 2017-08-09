@@ -1,221 +1,118 @@
 ----------------------------------STANBY MODE----------------------------------
-118.263424479
+121.582148437
 ----------------------------------FALLING MODE----------------------------------
 ----------------------------------RUNNING MODE----------------------------------
-[GPS mode] GPS: (0, 0) Direction: (0, 0) Distance: 10000[cm] Action: s
-[GPS mode] GPS: (0, 0) Direction: (0, 0) Distance: 10000[cm] Action: f
-[GPS mode] GPS: (0, 0) Direction: (0, 0) Distance: 10000[cm] Action: f
-[GPS mode] GPS: (139.93885, 37.52243) Direction: (13, 4) Distance: 1264.97233115[cm] Action: f
-[GPS mode] GPS: (139.93885, 37.52243) Direction: (13, 4) Distance: 1264.97233115[cm] Action: r
-[GPS mode] GPS: (139.938846667, 37.522433333) Direction: (12, 4) Distance: 1297.76657433[cm] Action: r
-[GPS mode] GPS: (139.938843333, 37.522436667) Direction: (15, 4) Distance: 1330.09898616[cm] Action: r
-[GPS mode] GPS: (139.938841667, 37.522436667) Direction: (15, 4) Distance: 1348.9167289[cm] Action: r
-[GPS mode] GPS: (139.938841667, 37.522436667) Direction: (15, 4) Distance: 1348.9167289[cm] Action: r
-[GPS mode] GPS: (139.93884, 37.522435) Direction: (14, 4) Distance: 1370.35330103[cm] Action: r
-[GPS mode] GPS: (139.93884, 37.522435) Direction: (14, 4) Distance: 1370.35330103[cm] Action: r
-[GPS mode] GPS: (139.93884, 37.522435) Direction: (14, 4) Distance: 1370.35330103[cm] Action: r
-[GPS mode] GPS: (139.93884, 37.522433333) Direction: (0, 4) Distance: 1372.79579723[cm] Action: r
-[GPS mode] GPS: (139.93884, 37.522433333) Direction: (0, 4) Distance: 1372.79579723[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (0, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (0, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (0, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (0, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (0, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (15, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (0, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (0, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (0, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (2, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (2, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-stuck now
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (2, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (2, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (0, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (2, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (0, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (0, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (2, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (2, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (0, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522433333) Direction: (1, 4) Distance: 1391.54024878[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (2, 4) Distance: 1389.13071118[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (0, 4) Distance: 1389.13071118[cm] Action: r
-stuck now
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (0, 4) Distance: 1389.13071118[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (11, 4) Distance: 1389.13071118[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (12, 4) Distance: 1389.13071118[cm] Action: l
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (11, 4) Distance: 1389.13071118[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (11, 4) Distance: 1389.13071118[cm] Action: l
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (11, 4) Distance: 1389.13071118[cm] Action: l
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (11, 4) Distance: 1389.13071118[cm] Action: l
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (11, 4) Distance: 1389.13071118[cm] Action: l
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (11, 4) Distance: 1389.13071118[cm] Action: l
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (3, 4) Distance: 1389.13071118[cm] Action: l
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (3, 4) Distance: 1389.13071118[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (5, 4) Distance: 1389.13071118[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (5, 4) Distance: 1389.13071118[cm] Action: l
-[GPS mode] GPS: (139.938838333, 37.522435) Direction: (3, 4) Distance: 1389.13071118[cm] Action: l
-[GPS mode] GPS: (139.938838333, 37.522436667) Direction: (3, 4) Distance: 1386.5503337[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522436667) Direction: (5, 4) Distance: 1386.5503337[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522436667) Direction: (3, 4) Distance: 1386.5503337[cm] Action: l
-[GPS mode] GPS: (139.938838333, 37.522436667) Direction: (12, 4) Distance: 1386.5503337[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522436667) Direction: (12, 4) Distance: 1386.5503337[cm] Action: r
-stuck now
-[GPS mode] GPS: (139.938838333, 37.522436667) Direction: (6, 4) Distance: 1386.5503337[cm] Action: r
-[GPS mode] GPS: (139.938838333, 37.522436667) Direction: (8, 4) Distance: 1386.5503337[cm] Action: l
-[GPS mode] GPS: (139.938838333, 37.522436667) Direction: (6, 4) Distance: 1386.5503337[cm] Action: l
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (4, 4) Distance: 1405.34427492[cm] Action: l
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (5, 4) Distance: 1405.34427492[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (5, 4) Distance: 1405.34427492[cm] Action: l
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (3, 4) Distance: 1405.34427492[cm] Action: l
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (2, 4) Distance: 1405.34427492[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (4, 4) Distance: 1405.34427492[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (2, 4) Distance: 1405.34427492[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (7, 4) Distance: 1405.34427492[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (7, 4) Distance: 1405.34427492[cm] Action: l
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (4, 4) Distance: 1405.34427492[cm] Action: l
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (4, 4) Distance: 1405.34427492[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (4, 4) Distance: 1405.34427492[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (3, 4) Distance: 1405.34427492[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (4, 4) Distance: 1405.34427492[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (4, 4) Distance: 1405.34427492[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (3, 4) Distance: 1405.34427492[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (6, 4) Distance: 1405.34427492[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (3, 4) Distance: 1405.34427492[cm] Action: l
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (6, 4) Distance: 1405.34427492[cm] Action: r
-stuck now
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (4, 4) Distance: 1405.34427492[cm] Action: l
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (4, 4) Distance: 1405.34427492[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (14, 4) Distance: 1405.34427492[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (14, 4) Distance: 1405.34427492[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (14, 4) Distance: 1405.34427492[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (15, 4) Distance: 1405.34427492[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (15, 4) Distance: 1405.34427492[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (15, 4) Distance: 1405.34427492[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (14, 4) Distance: 1405.34427492[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522436667) Direction: (15, 4) Distance: 1405.34427492[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (14, 4) Distance: 1402.63065877[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (14, 4) Distance: 1402.63065877[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (14, 4) Distance: 1402.63065877[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (14, 4) Distance: 1402.63065877[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (14, 4) Distance: 1402.63065877[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (14, 4) Distance: 1402.63065877[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (15, 4) Distance: 1402.63065877[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (14, 4) Distance: 1402.63065877[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (4, 4) Distance: 1402.63065877[cm] Action: r
-stuck now
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (4, 4) Distance: 1402.63065877[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (3, 4) Distance: 1402.63065877[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (4, 4) Distance: 1402.63065877[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (4, 4) Distance: 1402.63065877[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (3, 4) Distance: 1402.63065877[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (4, 4) Distance: 1402.63065877[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.522438333) Direction: (4, 4) Distance: 1402.63065877[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (3, 4) Distance: 1421.4644554[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (3, 4) Distance: 1421.4644554[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (3, 4) Distance: 1421.4644554[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (3, 4) Distance: 1421.4644554[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (7, 4) Distance: 1421.4644554[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (7, 4) Distance: 1421.4644554[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (7, 4) Distance: 1421.4644554[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (2, 4) Distance: 1421.4644554[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (4, 4) Distance: 1421.4644554[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (6, 4) Distance: 1421.4644554[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (1, 4) Distance: 1421.4644554[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (1, 4) Distance: 1421.4644554[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (3, 4) Distance: 1421.4644554[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (2, 4) Distance: 1421.4644554[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (6, 4) Distance: 1421.4644554[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (7, 4) Distance: 1421.4644554[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (3, 4) Distance: 1421.4644554[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (3, 4) Distance: 1421.4644554[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (3, 4) Distance: 1421.4644554[cm] Action: r
-stuck now
-[GPS mode] GPS: (139.938835, 37.522438333) Direction: (1, 4) Distance: 1421.4644554[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (4, 4) Distance: 1418.61722219[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (6, 4) Distance: 1418.61722219[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (4, 4) Distance: 1418.61722219[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (4, 4) Distance: 1418.61722219[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (6, 4) Distance: 1418.61722219[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (3, 4) Distance: 1418.61722219[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (4, 4) Distance: 1418.61722219[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (8, 4) Distance: 1418.61722219[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (9, 4) Distance: 1418.61722219[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (9, 4) Distance: 1418.61722219[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (4, 4) Distance: 1418.61722219[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (3, 4) Distance: 1418.61722219[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (4, 4) Distance: 1418.61722219[cm] Action: r
-[GPS mode] GPS: (139.938836667, 37.52244) Direction: (6, 4) Distance: 1399.74511611[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (4, 4) Distance: 1418.61722219[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (4, 4) Distance: 1418.61722219[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (6, 4) Distance: 1418.61722219[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (4, 4) Distance: 1418.61722219[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (5, 4) Distance: 1418.61722219[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.52244) Direction: (5, 4) Distance: 1399.74511611[cm] Action: l
-[GPS mode] GPS: (139.938836667, 37.52244) Direction: (6, 4) Distance: 1399.74511611[cm] Action: l
-[GPS mode] GPS: (139.938836667, 37.52244) Direction: (6, 4) Distance: 1399.74511611[cm] Action: l
-[GPS mode] GPS: (139.938836667, 37.52244) Direction: (4, 4) Distance: 1399.74511611[cm] Action: l
-[GPS mode] GPS: (139.938836667, 37.52244) Direction: (4, 4) Distance: 1399.74511611[cm] Action: f
-[GPS mode] GPS: (139.938836667, 37.52244) Direction: (5, 4) Distance: 1399.74511611[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (14, 4) Distance: 1418.61722219[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (5, 4) Distance: 1418.61722219[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (5, 4) Distance: 1418.61722219[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (4, 4) Distance: 1418.61722219[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (6, 4) Distance: 1418.61722219[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (4, 4) Distance: 1418.61722219[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (5, 4) Distance: 1418.61722219[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (4, 4) Distance: 1418.61722219[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (4, 4) Distance: 1418.61722219[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (4, 4) Distance: 1418.61722219[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (6, 4) Distance: 1418.61722219[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (2, 4) Distance: 1418.61722219[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.52244) Direction: (5, 4) Distance: 1418.61722219[cm] Action: r
-[GPS mode] GPS: (139.938833333, 37.52244) Direction: (4, 4) Distance: 1437.4803294[cm] Action: l
-[GPS mode] GPS: (139.938833333, 37.52244) Direction: (4, 4) Distance: 1437.4803294[cm] Action: f
-[GPS mode] GPS: (139.938833333, 37.52244) Direction: (3, 4) Distance: 1437.4803294[cm] Action: f
-[GPS mode] GPS: (139.938833333, 37.52244) Direction: (15, 4) Distance: 1437.4803294[cm] Action: r
-[GPS mode] GPS: (139.938833333, 37.52244) Direction: (5, 4) Distance: 1437.4803294[cm] Action: r
-[GPS mode] GPS: (139.938833333, 37.52244) Direction: (10, 4) Distance: 1437.4803294[cm] Action: l
-[GPS mode] GPS: (139.938833333, 37.522441667) Direction: (5, 4) Distance: 1434.50379887[cm] Action: l
-[GPS mode] GPS: (139.938833333, 37.522441667) Direction: (5, 4) Distance: 1434.50379887[cm] Action: l
-[GPS mode] GPS: (139.938833333, 37.522441667) Direction: (8, 4) Distance: 1434.50379887[cm] Action: l
-[GPS mode] GPS: (139.938833333, 37.522441667) Direction: (9, 4) Distance: 1434.50379887[cm] Action: l
-[GPS mode] GPS: (139.938833333, 37.522441667) Direction: (3, 4) Distance: 1434.50379887[cm] Action: l
-[GPS mode] GPS: (139.938833333, 37.522441667) Direction: (3, 4) Distance: 1434.50379887[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (8, 5) Distance: 1415.60102948[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (8, 5) Distance: 1415.60102948[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (4, 5) Distance: 1415.60102948[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (4, 5) Distance: 1415.60102948[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (5, 5) Distance: 1415.60102948[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (4, 5) Distance: 1415.60102948[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (5, 5) Distance: 1415.60102948[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (5, 5) Distance: 1415.60102948[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (2, 5) Distance: 1415.60102948[cm] Action: f
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (11, 5) Distance: 1415.60102948[cm] Action: r
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (10, 5) Distance: 1415.60102948[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (8, 5) Distance: 1415.60102948[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (6, 5) Distance: 1415.60102948[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (6, 5) Distance: 1415.60102948[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (6, 5) Distance: 1415.60102948[cm] Action: l
-[GPS mode] GPS: (139.938835, 37.522441667) Direction: (10, 5) Distance: 1415.60102948[cm] Action: l
-[GPS mode] GPS: (139.938833333, 37.522443333) Direction: (7, 5) Distance: 1431.36157934[cm] Action: l
-[GPS mode] GPS: (139.938833333, 37.522443333) Direction: (13, 5) Distance: 1431.36157934[cm] Action: l
-[GPS mode] GPS: (139.938833333, 37.522443333) Direction: (13, 5) Distance: 1431.36157934[cm] Action: r
-[GPS mode] GPS: (139.938833333, 37.522443333) Direction: (13, 5) Distance: 1431.36157934[cm] Action: r
-[GPS mode] GPS: (139.938833333, 37.522443333) Direction: (14, 5) Distance: 1431.36157934[cm] Action: r
-[GPS mode] GPS: (139.938833333, 37.522443333) Direction: (12, 5) Distance: 1431.36157934[cm] Action: r
+[GPS mode] GPS: 139.938973333, 37.522476667 Direction: 3, 14 Distance: 386.23309308 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938966667, 37.522483333 Direction: 2, 14 Distance: 343.600721238 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938966667, 37.522483333 Direction: 2, 14 Distance: 343.600721238 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938966667, 37.522483333 Direction: 2, 14 Distance: 343.600721238 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938966667, 37.522485 Direction: 2, 14 Distance: 367.70193702 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938966667, 37.522485 Direction: 1, 14 Distance: 367.70193702 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938965, 37.522486667 Direction: 1, 14 Distance: 357.102370501 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938965, 37.522488333 Direction: 0, 14 Distance: 379.119273708 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938966667, 37.522491667 Direction: 0, 14 Distance: 446.258867813 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938968333, 37.522493333 Direction: 0, 14 Distance: 488.882184177 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938971667, 37.522496667 Direction: 15, 13 Distance: 565.193711812 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938973333, 37.5225 Direction: 15, 13 Distance: 610.704130785 [cm] Action: l Red: 0.00130208333333
+[GPS mode] GPS: 139.938975, 37.522505 Direction: 15, 13 Distance: 661.005547936 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938973333, 37.522528333 Direction: 14, 13 Distance: 723.16410359 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.93898, 37.52254 Direction: 14, 12 Distance: 813.147572034 [cm] Action: l Red: 0.001953125
+[GPS mode] GPS: 139.93898, 37.522543333 Direction: 13, 12 Distance: 814.623328812 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938968333, 37.522535 Direction: 12, 12 Distance: 677.944218891 [cm] Action: f Red: 0
+[GPS mode] GPS: 139.938963333, 37.522533333 Direction: 12, 12 Distance: 619.073246505 [cm] Action: f Red: 0.00260416666667
+[GPS mode] GPS: 139.93896, 37.522536667 Direction: 12, 12 Distance: 586.574070277 [cm] Action: f Red: 0.00520833333333
+[GPS mode] GPS: 139.938955, 37.52254 Direction: 12, 12 Distance: 534.354882758 [cm] Action: f Red: 0
+[GPS mode] GPS: 139.938953333, 37.522541667 Direction: 12, 12 Distance: 517.115180468 [cm] Action: f Red: 0.0110677083333
+[GPS mode] GPS: 139.93895, 37.52254 Direction: 12, 12 Distance: 478.463014902 [cm] Action: f Red: 0.03515625
+[GPS mode] GPS: 139.938945, 37.522538333 Direction: 14, 12 Distance: 420.237417707 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938938333, 37.522536667 Direction: 14, 13 Distance: 341.473693601 [cm] Action: l Red: 0
+[GPS mode] GPS: 139.938935, 37.522535 Direction: 12, 13 Distance: 298.473683157 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938931667, 37.522531667 Direction: 12, 13 Distance: 245.173662736 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.93893, 37.522528333 Direction: 13, 13 Distance: 203.191627494 [cm] Action: f Red: 0
+[GPS mode] GPS: 139.938926667, 37.522526667 Direction: 14, 14 Distance: 135.360326246 [cm] Action: f Red: 0
+[GPS mode] GPS: 139.938923333, 37.522525 Direction: 13, 14 Distance: 48.6530094157 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.93892, 37.522525 Direction: 13, 14 Distance: 121.31140418 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938916667, 37.522526667 Direction: 13, 15 Distance: 136.859587772 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938913333, 37.522528333 Direction: 13, 15 Distance: 143.063902554 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938911667, 37.52253 Direction: 14, 15 Distance: 134.909958962 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938911667, 37.52253 Direction: 15, 15 Distance: 134.909958962 [cm] Action: f Red: 0
+[GPS mode] GPS: 139.938908333, 37.522531667 Direction: 0, 0 Distance: 129.386022312 [cm] Action: f Red: 0
+[GPS mode] GPS: 139.938906667, 37.52253 Direction: 15, 0 Distance: 145.905599924 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938903333, 37.52253 Direction: 0, 1 Distance: 141.122510922 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.9389, 37.52253 Direction: 0, 1 Distance: 125.692350714 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938896667, 37.522531667 Direction: 1, 2 Distance: 68.7936269944 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938891667, 37.522535 Direction: 1, 3 Distance: 133.145061164 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938886667, 37.522535 Direction: 1, 3 Distance: 198.3477674 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938881667, 37.522533333 Direction: 1, 3 Distance: 252.687034702 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938878333, 37.522535 Direction: 1, 3 Distance: 298.485407831 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938876667, 37.522538333 Direction: 1, 3 Distance: 325.991760086 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938875, 37.52254 Direction: 1, 4 Distance: 347.651960035 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938876667, 37.522541667 Direction: 1, 4 Distance: 331.055300971 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938876667, 37.522543333 Direction: 2, 4 Distance: 332.516767577 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938878333, 37.522546667 Direction: 1, 4 Distance: 314.831159154 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938878333, 37.522551667 Direction: 3, 4 Distance: 310.620420108 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938878333, 37.522555 Direction: 2, 5 Distance: 304.00634545 [cm] Action: r Red: 0
+[GPS mode] GPS: 139.938876667, 37.52256 Direction: 10, 5 Distance: 307.993391497 [cm] Action: l Red: 0.272786458333
+[IMG mode] GPS: 139.938875, 37.522565 Point: 47, 206 Distance: 0.0 [cm] Action: l Red: 0.283203125
+[IMG mode] GPS: 139.938875, 37.522566667 Point: 96, 162 Distance: 22.779815051 [cm] Action: f Red: 0.248697916667
+[IMG mode] GPS: 139.938876667, 37.522566667 Point: 114, 167 Distance: 82.2604432398 [cm] Action: f Red: 0.266276041667
+[IMG mode] GPS: 139.938876667, 37.52257 Point: 96, 173 Distance: 16.452088648 [cm] Action: f Red: 0.287760416667
+[IMG mode] GPS: 139.938876667, 37.522573333 Point: 114, 179 Distance: 10.1243622449 [cm] Action: f Red: 0.30859375
+[IMG mode] GPS: 139.938876667, 37.522571667 Point: 137, 213 Distance: 22.779815051 [cm] Action: f Red: 0.337890625
+[IMG mode] GPS: 139.938875, 37.522568333 Point: 131, 210 Distance: 18.9831792092 [cm] Action: f Red: 0.338541666667
+[IMG mode] GPS: 139.938876667, 37.522565 Point: 123, 224 Distance: 43.0285395408 [cm] Action: f Red: 0.317057291667
+[IMG mode] GPS: 139.938876667, 37.522563333 Point: 155, 211 Distance: 25.3109056122 [cm] Action: f Red: 0.366536458333
+[IMG mode] GPS: 139.93888, 37.522561667 Point: 192, 188 Distance: 26.5764508929 [cm] Action: r Red: 0.393229166667
+[IMG mode] GPS: 139.938881667, 37.52256 Point: 176, 190 Distance: 17.7176339286 [cm] Action: r Red: 0.41015625
+[IMG mode] GPS: 139.938883333, 37.522558333 Point: 167, 178 Distance: 20.2487244898 [cm] Action: r Red: 0.39453125
+[IMG mode] GPS: 139.938885, 37.522558333 Point: 164, 177 Distance: 21.5142697704 [cm] Action: r Red: 0.399739583333
+[IMG mode] GPS: 139.938888333, 37.522555 Point: 160, 175 Distance: 22.779815051 [cm] Action: r Red: 0.400390625
+[IMG mode] GPS: 139.93889, 37.522553333 Point: 157, 176 Distance: 22.779815051 [cm] Action: f Red: 0.390625
+[IMG mode] GPS: 139.938893333, 37.522551667 Point: 160, 183 Distance: 10.1243622449 [cm] Action: r Red: 0.400390625
+[IMG mode] GPS: 139.938895, 37.52255 Point: 238, 119 Distance: 17.7176339286 [cm] Action: r Red: 0.411458333333
+[IMG mode] GPS: 139.938898333, 37.522546667 Point: 66, 171 Distance: 15.1865433673 [cm] Action: l Red: 0.490234375
+[IMG mode] GPS: 139.9389, 37.522548333 Point: 71, 181 Distance: 36.7008131378 [cm] Action: l Red: 0.51171875
+[IMG mode] GPS: 139.9389, 37.522548333 Point: 95, 181 Distance: 22.779815051 [cm] Action: f Red: 0.491536458333
+[IMG mode] GPS: 139.9389, 37.522548333 Point: 91, 184 Distance: 18.9831792092 [cm] Action: f Red: 0.495442708333
+[IMG mode] GPS: 139.9389, 37.522546667 Point: 215, 104 Distance: 15.1865433673 [cm] Action: r Red: 0.448567708333
+[IMG mode] GPS: 139.9389, 37.522546667 Point: 276, 196 Distance: 0.0 [cm] Action: f Red: 0.590494791667
+[IMG mode] GPS: 139.938898333, 37.522543333 Point: 307, 183 Distance: 0.0 [cm] Action: f Red: 0.602864583333
+[IMG mode] GPS: 139.938896667, 37.522541667 Point: 310, 187 Distance: 22.779815051 [cm] Action: f Red: 0.557942708333
+[IMG mode] GPS: 139.938895, 37.522543333 Point: 310, 187 Distance: 0.0 [cm] Action: r Red: 0
+[IMG mode] GPS: 139.938895, 37.522546667 Point: 314, 166 Distance: 7.59327168367 [cm] Action: f Red: 0.403645833333
+[IMG mode] GPS: 139.938908333, 37.522541667 Point: 252, 171 Distance: 18.9831792092 [cm] Action: f Red: 0.678385416667
+[IMG mode] GPS: 139.938921667, 37.522531667 Point: 252, 189 Distance: 46.8251753827 [cm] Action: f Red: 0.75
+[IMG mode] GPS: 139.938925, 37.52253 Point: 309, 178 Distance: 0.0 [cm] Action: f Red: 0.820963541667
+[IMG mode] GPS: 139.938928333, 37.522526667 Point: 309, 178 Distance: 43.0285395408 [cm] Action: r Red: 0
+[IMG mode] GPS: 139.93893, 37.522525 Point: 308, 182 Distance: 21.5142697704 [cm] Action: f Red: 1.0390625
+[IMG mode] GPS: 139.938931667, 37.522523333 Point: 277, 189 Distance: 15.1865433673 [cm] Action: f Red: 1.1484375
+[IMG mode] GPS: 139.938936667, 37.522521667 Point: 290, 188 Distance: 12.6554528061 [cm] Action: f Red: 1.25325520833
+[IMG mode] GPS: 139.93894, 37.522521667 Point: 299, 161 Distance: 41.7629942602 [cm] Action: f Red: 1.42838541667
+[IMG mode] GPS: 139.938946667, 37.522521667 Point: 290, 168 Distance: 21.5142697704 [cm] Action: f Red: 1.61002604167
+[IMG mode] GPS: 139.938951667, 37.522523333 Point: 283, 181 Distance: 13.9209980867 [cm] Action: f Red: 2.052734375
+[IMG mode] GPS: 139.938956667, 37.522523333 Point: 293, 185 Distance: 11.3899075255 [cm] Action: f Red: 2.41666666667
+[IMG mode] GPS: 139.93896, 37.522521667 Point: 293, 185 Distance: 10.1243622449 [cm] Action: r Red: 0
+[IMG mode] GPS: 139.938961667, 37.522518333 Point: 314, 174 Distance: 13.9209980867 [cm] Action: f Red: 0.659505208333
+[IMG mode] GPS: 139.938963333, 37.522515 Point: 287, 167 Distance: 24.0453603316 [cm] Action: f Red: 3.23307291667
+[IMG mode] GPS: 139.938963333, 37.522513333 Point: 283, 169 Distance: 29.1075414541 [cm] Action: f Red: 3.748046875
+[IMG mode] GPS: 139.938963333, 37.522511667 Point: 308, 146 Distance: 32.9041772959 [cm] Action: f Red: 2.71940104167
+[IMG mode] GPS: 139.938965, 37.52251 Point: 308, 146 Distance: 29.1075414541 [cm] Action: r Red: 0
+[IMG mode] GPS: 139.938966667, 37.522508333 Point: 308, 146 Distance: 8.85881696429 [cm] Action: r Red: 0
+[IMG mode] GPS: 139.93897, 37.522505 Point: 314, 210 Distance: 7.59327168367 [cm] Action: f Red: 0.0904947916667
+[IMG mode] GPS: 139.938971667, 37.522505 Point: 317, 218 Distance: 8.85881696429 [cm] Action: r Red: 0.0208333333333
+[IMG mode] GPS: 139.938973333, 37.522505 Point: 315, 191 Distance: 7.59327168367 [cm] Action: f Red: 0.35546875
+[IMG mode] GPS: 139.938975, 37.522503333 Point: 226, 114 Distance: 22.779815051 [cm] Action: r Red: 8.046875
+[IMG mode] GPS: 139.938975, 37.522503333 Point: 170, 152 Distance: 3.79663584184 [cm] Action: r Red: 10.6373697917
+[IMG mode] GPS: 139.938976667, 37.522503333 Point: 165, 150 Distance: 5.06218112245 [cm] Action: r Red: 10.7682291667
+[IMG mode] GPS: 139.938976667, 37.522501667 Point: 163, 148 Distance: 5.06218112245 [cm] Action: r Red: 10.8528645833
+[IMG mode] GPS: 139.938975, 37.522501667 Point: 162, 146 Distance: 5.06218112245 [cm] Action: r Red: 10.7109375
+[IMG mode] GPS: 139.938975, 37.522501667 Point: 161, 144 Distance: 3.79663584184 [cm] Action: r Red: 10.650390625
+[IMG mode] GPS: 139.938976667, 37.522501667 Point: 160, 146 Distance: 5.06218112245 [cm] Action: r Red: 10.845703125
+[IMG mode] GPS: 139.938978333, 37.522503333 Point: 87, 81 Distance: 5.06218112245 [cm] Action: f Red: 11.126953125
+[IMG mode] GPS: 139.938978333, 37.522503333 Point: 87, 81 Distance: 15.1865433673 [cm] Action: r Red: 0
+[IMG mode] GPS: 139.938976667, 37.522503333 Point: 87, 81 Distance: 0.0 [cm] Action: r Red: 0
+[IMG mode] GPS: 139.938975, 37.522505 Point: 87, 81 Distance: 6.32772640306 [cm] Action: r Red: 0
+[IMG mode] GPS: 139.938973333, 37.522508333 Point: 87, 81 Distance: 3.79663584184 [cm] Action: r Red: 0
+[IMG mode] GPS: 139.938973333, 37.522511667 Point: 87, 81 Distance: 3.79663584184 [cm] Action: r Red: 0
+[IMG mode] GPS: 139.938975, 37.522515 Point: 123, 124 Distance: 0.0 [cm] Action: f Red: 75.087890625
+----------------------------------!!! GOAL !!!----------------------------------

@@ -99,13 +99,13 @@ class ImageProcMode:
      
 
     def robot_action(self):
-        if 0 <= self.target.x and self.target.x < self.row/3:
+        if 0 <= self.target.x and self.target.x <= self.row/3:
             self.action = 'l'
-        elif self.row/3 <= self.target.x and self.target.x < 2*self.row/3:
-            self.action = 'f'
         elif 2*self.row/3 <= self.target.x and self.target.x <= self.row:
             self.action = 'r'
-
+        else:
+            self.action = 'f'
+        print 'robot action: ' + self.action
 
     '''
     Set function
@@ -125,4 +125,5 @@ class ImageProcMode:
         return self.red_rate
 
     def get_action(self):
+        print self.action
         return self.action
