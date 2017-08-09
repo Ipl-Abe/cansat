@@ -14,8 +14,8 @@ from gps import *
 f = open('record.txt', 'w')
 
 # target GPS data
-target_x = 139.938981667
-target_y = 37.522533333
+target_x = 139.938965
+target_y = 37.52241
 
 '''
 Initialize
@@ -114,10 +114,9 @@ def standby(camera):
 
 def falling():
 
-    for i in range(90):
+    for i in range(120):
         time.sleep(1)
         record = str(i+1)
-
         # 最初の30秒間は焼き切り、その後は10秒に1回は焼き切り
         if i < 30 or i%10 == 0:
             GPIO.output(2, GPIO.HIGH)
@@ -131,6 +130,8 @@ def falling():
             GPIO.output(20, 0)
             GPIO.output(21, 1)
             record = record + ": winding"
+
+        print record
 
     pwm.ChangeDutyCycle(0)
     pwm.stop()
@@ -153,7 +154,7 @@ def running(camera, mode):
     if not(d-0.05 <= gps_mode.get_distance() and gps_mode.get_distance() <= d+0.05):
         stuck_start = time.clock()
     # スタック
-    if stuck_time >= 5:
+    if stuck_time >= 20:
         record = "stuck now"
         print record
         f.write(record + "\n")
@@ -167,16 +168,15 @@ def running(camera, mode):
             
     # Image Processing Mode
     else:
-        control_byImg(prev_action)
+        control_byImg()
         if img_mode.get_redRate() > 50 and read_ultrasonic() < 50:
-            return img_mode.get_redRate() False
+            return False
 
-    return img_mode.get_redRate() True
+
+    return True
 
 def regular_proc(camera):
     lon, lat = read_gps()
-    #lon = 0
-    #lat = 0
     if lon != 0 and lat != 0:
         gps_mode.set_robotGPS(lon, lat)
         gps_mode.set_robotDirection(read_compass())
@@ -197,10 +197,10 @@ def control_byGPS():
     print record
     f.write(record + "\n")
 
-def control_byImg(prev_action):
+def control_byImg():
     # 赤色を認識できないとき
     if img_mode.get_redRate() < 1.0:
-        action = prev_action
+        action = img_mode.get_action()
     else:
         img_mode.robot_action()
         action = img_mode.get_action()
@@ -253,8 +253,10 @@ def main():
         f.write(record + "\n")
         
         running_start = time.clock()
-
+        
+        
         with picamera.PiCamera() as camera:
+        
             camera.resolution = (320, 240)
             time.sleep(2)
             while True:
@@ -267,29 +269,38 @@ def main():
                         f.write(record + "\n")
                 # falling mode
                 if mode == 1:
-                    falling()
+                    #falling()
+                    motor.set_speed(50)
+                    motor.move_forward()
+                    time.sleep(10)
+                    stuck_start = time.clock()
+                    stop_start = time.clock()
+
                     mode = 2
                     record = "----------------------------------RUNNING MODE----------------------------------"
                     print record
                     f.write(record + "\n")
-                    motor.set_speed(30)
-                    motor.move_forward()
-                    time.sleep(10)
-                    stuck_start = time.clock()
+                    motor.set_speed(90)
                 # running mode
                 if mode == 2:
                     running_time = time.clock() - running_start
+                    stop_time = time.clock() - stop_start
                     if running_time > 1:
-                        running_flag, red_rate = running(camera, running_mode)
-                        if red_rate > 3.0:
+                        if img_mode.get_redRate() > 3.0:
                             running_mode = 1
-                        if running_flag == False:
+                            motor.set_speed(50)
+                        if running(camera, running_mode) == False:
                             record = "----------------------------------!!! GOAL !!!----------------------------------"
                             print record
                             f.write(record + "\n")
                             break
                         else:
                             running_start = time.clock()
+                    if stop_time > 60:
+                        control_motor('s')
+                        time.sleep(15)
+                        stop_start = time.clock()
+        
 
     except KeyboardInterrupt:
         motor.finish()

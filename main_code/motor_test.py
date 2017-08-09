@@ -1,17 +1,19 @@
 import Motor
 import cv2
 import time
+import RPi.GPIO as GPIO
 
 cv2.namedWindow('test')
 
 
 motor = Motor.Motor(7, 25, 23, 24)
-speed = 40
+speed = 100
 flag = 0
 motor.set_speed(speed)
 start = time.clock()
 
 while True:
+
 
     '''
     n_time = time.clock() - start
@@ -60,5 +62,5 @@ while True:
     if key == ord("e"):
         print "end"
         motor.finish()
+        GPIO.cleanup()
         break
-
